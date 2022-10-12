@@ -5,4 +5,5 @@ return [
     'drivers' => [
         'kurs-dollar-org' => \App\Services\ExchangeRate\Drivers\KursDollarOrgDriver::class,
     ],
+    'cron' => '7 * * * *',
 ];
