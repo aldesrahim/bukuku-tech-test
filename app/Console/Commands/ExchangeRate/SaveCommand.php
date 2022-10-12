@@ -12,7 +12,7 @@ class SaveCommand extends Command
      *
      * @var string
      */
-    protected $signature;
+    protected $signature = 'exchange-rate:save';
 
     /**
      * The console command description.
