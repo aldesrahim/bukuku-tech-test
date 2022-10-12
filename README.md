@@ -1,8 +1,6 @@
 
 ## Bukuku Tech Test
 
----
-
 ### Instalasi
 1. jalankan `composer install`
 2. jalankan `npm i` dan `npm run dev`
