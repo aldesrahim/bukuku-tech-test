@@ -11,7 +11,7 @@ class DateTransformHelper
         $locale = config('app.locale');
         $fallbackLocale = config('app.fallback_locale');
 
-        if (!setlocale(LC_ALL, $locale)) {
+        if (! setlocale(LC_ALL, $locale)) {
             return $fallbackLocale;
         }
 
@@ -27,7 +27,7 @@ class DateTransformHelper
         return Carbon::createFromLocaleIsoFormat($format, self::getLocaleCode(), $timeString);
     }
 
-    public static function dayNameToEN($dayID): String
+    public static function dayNameToEN($dayID): string
     {
         $dayID = strtolower($dayID);
         $dayID = StringHelper::getLettersOnly($dayID);
@@ -39,7 +39,7 @@ class DateTransformHelper
             'kamis' => 'thursday',
             'jumat' => 'friday',
             'sabtu' => 'saturday',
-            'minggu' => 'sunday'
+            'minggu' => 'sunday',
         ];
 
         return ucfirst($daysMap[$dayID] ?? $dayID);

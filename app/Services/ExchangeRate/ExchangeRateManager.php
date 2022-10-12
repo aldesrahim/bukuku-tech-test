@@ -3,7 +3,6 @@
 namespace App\Services\ExchangeRate;
 
 use App\Services\ExchangeRate\Contracts\ExchangeRateDriverInterface;
-use JetBrains\PhpStorm\ArrayShape;
 
 class ExchangeRateManager
 {
@@ -39,7 +38,6 @@ class ExchangeRateManager
         return $this->currentDriver;
     }
 
-    #[ArrayShape(['meta' => 'array', 'rates' => 'array'])]
     public function get(): array
     {
         return [

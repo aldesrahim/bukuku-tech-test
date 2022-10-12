@@ -12,7 +12,7 @@ class StringHelper
     public static function cleanHTML($html): string
     {
         $items = [
-            "\xC2\xA0" => ' ' // replace &nbsp; source:https://stackoverflow.com/a/33019796
+            "\xC2\xA0" => ' ', // replace &nbsp; source:https://stackoverflow.com/a/33019796
         ];
 
         foreach ($items as $search => $replace) {
