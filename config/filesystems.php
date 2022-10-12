@@ -56,6 +56,14 @@ return [
             'throw' => false,
         ],
 
+        'exchange-rate' => [
+            'driver' => 'local',
+            'root' => storage_path('app/public/exchange-rate'),
+            'url' => env('APP_URL').'/storage',
+            'visibility' => 'public',
+            'throw' => false,
+        ],
+
     ],
 
     /*
