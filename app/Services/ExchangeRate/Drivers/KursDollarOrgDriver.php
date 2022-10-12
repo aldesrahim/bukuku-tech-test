@@ -86,7 +86,7 @@ class KursDollarOrgDriver extends BaseExchangeRateDriver
         return $rates;
     }
 
-    public function cleanRateValue($str): string
+    public function cleanRateValue($str): float
     {
         $str = StringHelper::cleanHTML($str);
         $str = preg_replace('/ \([^)]*\)/', '', $str);

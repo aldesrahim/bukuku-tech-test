@@ -22,8 +22,8 @@ class StringHelper
         return $html;
     }
 
-    public static function unformatNumber($formattedNumber): string
+    public static function unformatNumber($formattedNumber): float
     {
-        return str_replace(['.', ','], ['', '.'], $formattedNumber);
+        return str_replace(['.', ','], ['', '.'], $formattedNumber) + 0;
     }
 }
