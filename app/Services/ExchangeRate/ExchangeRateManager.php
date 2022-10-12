@@ -3,8 +3,9 @@
 namespace App\Services\ExchangeRate;
 
 use App\Services\ExchangeRate\Contracts\ExchangeRateDriverInterface;
+use App\Services\ExchangeRate\Contracts\ExchangeRateManagerInterface;
 
-class ExchangeRateManager
+class ExchangeRateManager implements ExchangeRateManagerInterface
 {
     protected array $drivers;
 
@@ -18,21 +19,31 @@ class ExchangeRateManager
         $this->defaultDriver = config('exchange_rate.default_driver');
     }
 
+    public function getDrivers(): array
+    {
+        return $this->drivers;
+    }
+
+    public function getDefaultDriver(): string
+    {
+        return $this->defaultDriver;
+    }
+
     public function setDriver($driver): static
     {
-        if (! array_key_exists($driver, $this->drivers)) {
-            $driver = $this->defaultDriver;
+        if (! array_key_exists($driver, $this->getDrivers())) {
+            throw new \InvalidArgumentException('Driver tidak didukung.');
         }
 
-        $this->currentDriver = app($this->drivers[$driver]);
+        $this->currentDriver = app($this->getDrivers()[$driver]);
 
         return $this;
     }
 
-    public function getDriver(): ExchangeRateDriverInterface
+    public function getCurrentDriver(): ExchangeRateDriverInterface
     {
         if ($this->currentDriver === null) {
-            $this->currentDriver = app($this->drivers[$this->defaultDriver]);
+            $this->currentDriver = app($this->getDrivers()[$this->getDefaultDriver()]);
         }
 
         return $this->currentDriver;
@@ -41,8 +52,8 @@ class ExchangeRateManager
     public function get(): array
     {
         return [
-            'meta' => $this->getDriver()->getMeta(),
-            'rates' => $this->getDriver()->getRates(),
+            'meta' => $this->getCurrentDriver()->getMeta(),
+            'rates' => $this->getCurrentDriver()->getRates(),
         ];
     }
 }
